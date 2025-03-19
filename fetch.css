@@ -1,0 +1,41 @@
+.center-align{
+    align-items: center !important;
+}
+
+h5{
+    align-items: center !important;
+}
+
+.center-a{
+    
+    text-align: center !important;
+    color: blueviolet !important;
+
+}
+
+.button-center {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-image: linear-gradient(to right, #cd67ea, purple) !important;
+    color: white !important; /* Ensures text stays white */
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none !important;
+    transition: 0.3s ease-in-out;
+    text-decoration: none !important;
+    font-weight: bold !important; /* Optional: Make text more visible */
+}
+a{
+    color: white !important;
+}
+.button-center:hover {
+    opacity: 0.8; /* Slight fade on hover */
+}
+
+
+.marginC {
+    margin-top: 5% !important; /* Adjust as needed */
+}
+
+

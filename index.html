@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiffin Service</title>
+    <link rel="stylesheet" href="styles.css">
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Aboutus.css">
+  
+
+ <style>
+      body {
+          overflow-x: hidden;
+      }
+      .custom-heading {
+    font-family: 'Tangerine', sans-serif !important; /* Use the imported Google Font */
+    color: purple !important; /* Change font color to purple */
+    font-size: 50px;
+
+}
+      .welcome-container {
+          position: fixed;
+          top: 20%;
+          left: -100%;
+          font-size: 3rem;
+          font-weight: bold;
+          color: #FF6347;
+          text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+          animation: slideIn 3s forwards, sparkle 2s infinite alternate;
+          z-index: 9999;
+      }
+
+      #headline{
+    color: #570151 !important;
+    font-family: "Open Sans", sans-serif !important;
+
+
+      }
+
+      #description{
+        color: #000000 !important;
+        font-weight:600 !important;
+        font-family: "Open Sans", sans-serif !important;
+
+      }
+    
+.navbar-nav .nav-link {
+    transition: all 0.3s ease-in-out; /* Smooth transition */
+    padding: 8px 15px; /* Slightly increase padding for smoother effect */
+    border-radius: 8px; /* Rounded corners for hover effect */
+    font-weight: 500 !important;
+
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: #570151; /* Background color on hover */
+    color: #fff !important; /* Text color on hover */
+    transform: scale(1.1); /* Enlarges the link */
+}
+/* 
+      @keyframes slideIn {
+          to {
+              left: 10%;
+          }
+      }
+
+      @keyframes sparkle {
+          0% {
+              text-shadow: 0 0 5px #FFD700;
+          }
+          100% {
+              text-shadow: 0 0 20px #FFD700, 0 0 40px #FFA500;
+          }
+      }
+
+      .slide-in {
+          opacity: 0;
+          transform: translateX(-100px);
+          animation: slideText 1s ease-out forwards;
+      }
+
+      @keyframes slideText {
+          to {
+              opacity: 1;
+              transform: translateX(0);
+          }
+      } */
+       .fixed-top{
+        background-image:linear-gradient(to right, rgb(255, 255, 255), rgb(253, 246, 255));
+
+       }
+  </style>
+</head>
+<body>
+ <!-- navbar -->
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-md navbar-dark bg-light fixed-top">
+    <div class="container-fluid">
+        <a class="logo"><img src="logo.png" alt="" class="img-fluid" height="50px"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsExample04">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="fetch.php">Menu</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="contactUs.html">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="save_review.php">Review</a></li>
+                <li class="nav-item"><a class="nav-link" href="customised.php">Customised Meal</a></li>
+                <li class="nav-item"><a class="nav-link" href="chatbot.html">Help Me</a></li>
+                <li class="nav-item"><a class="nav-link" href="myorders.php">My order</a></li>
+
+            </ul>
+            <div id="user-info">
+              <span id="user-name" class="me-3"></span>
+              <a id="logout-btn" class="btn btn-outline-danger round-button" style="display: none; color: red !important" href="logout.php" >Logout</a>
+              <button id="login-btn" class="btn btn-outline-primary round-button" onclick="location.href='login.html'">Login</button>
+          </div>          
+        </div>
+    </div>
+</nav>
+  
+  <!-- main -->
+
+  <div class="container body-content">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div class="col-10 col-sm-8 col-lg-6">
+            <img src="mainpage.jpg" class="d-block mx-lg-auto img-fluid" alt="Tiffin Service" width="500" height="500">
+        </div>
+        <div class="col-lg-6">
+            <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3 custom-heading slide-in" id="headline">India's First Customized Online Tiffin Service</h1>
+            <p class="lead custom-lead slide-in" id="description">Order a healthy and well-balanced meal designed by our expert dietician in any part of Mumbai. <br> It’s all homemade… <br>"Ghar ka khana just the way you want."</p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start slide-in">
+                <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Order Now</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Aboutus -->
+<div class="top-banner3" id="about">
+    <h2>WHY SPICE & SLICE</h2>
+</div>
+<section class="why-section">
+    
+    <div class="container">
+        <div class="card">
+            <div class="icon">📍</div>
+            <h3>Locations</h3>
+            <p>We serve across multiple locations, bringing you fresh, homemade-style meals wherever you are. Find us in various cities with convenient delivery options.</p>
+        </div>
+        <div class="card">
+            <div class="icon">🍀</div>
+            <h3>Fresh Ingredients</h3>
+            <p>All our meals are made with carefully sourced, farm-fresh ingredients. No preservatives, no artificial flavors—just pure taste.</p>
+        </div>
+        <div class="card">
+            <div class="icon">🍱</div>
+            <h3>Hygiene & Packaging</h3>
+            <p>Our kitchens follow strict hygiene protocols. Meals are packed in BPA-free, microwave-friendly containers to ensure safety and freshness.</p>
+        </div>
+        <div class="card">
+            <div class="icon">🔄</div>
+            <h3>Easy Ordering & Cancellation</h3>
+            <p>Order via our website or mobile app. Modify or cancel subscriptions hassle-free. Refunds are credited to your Spice & Slice wallet.</p>
+        </div>
+        <div class="card">
+            <div class="icon">👨‍🍳</div>
+            <h3>Customizable Meals</h3>
+            <p>Choose from a variety of options and make your own meal based on your preferences. We cater to all dietary needs.</p>
+        </div>
+        <div class="card">
+            <div class="icon">🥗</div>
+            <h3>Dietitian-Designed Meals</h3>
+            <p>Our meals are crafted by dietitians to ensure balanced nutrition, giving you the perfect mix of proteins, carbs, and essential vitamins.</p>
+        </div>
+    </div>
+</section>
+
+
+
+
+<footer class="bg-white pt-5">
+  <div class="container">
+    <div class="row">
+      <!-- Left Column: Logo + Short Description -->
+      <div class="col-md-4 mb-4">
+        <!-- Logo + Tagline -->
+        <div class="d-flex align-items-center mb-3">
+          <!-- Replace 'logo.png' with your actual logo path -->
+          <img 
+            src="logo.png" 
+            alt="mealawe logo" 
+            style="width: 50px; height: auto; margin-right: 10px;"
+          />
+          
+        </div>
+
+        <!-- Company Description -->
+        <p class="text-muted" style="max-width: 300px;">
+          We at Mealawe bring in technology and solutions for building a healthy society 
+          by delivering the best homemade food from nearby home chefs.
+        </p>
+
+        <!-- Social Icons (optional) -->
+        <div>
+          <!-- Replace # with your social links -->
+          <a href="#" class="text-muted me-3">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="text-muted me-3">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="text-muted me-3">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="#" class="text-muted">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Middle Column 1: Company Links -->
+      <div class="col-md-2 mb-4">
+        <h6 class="fw-bold" style="color: #333;">Company</h6>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-muted">About Us</a></li>
+          <li><a href="#" class="text-muted">Why Us</a></li>
+          <li><a href="#" class="text-muted">Join Us</a></li>
+          <li><a href="#" class="text-muted">Careers</a></li>
+          <li><a href="#" class="text-muted">Contact Us</a></li>
+          
+        </ul>
+      </div>
+
+      <!-- Middle Column 2: Information -->
+      <div class="col-md-2 mb-4">
+        <h6 class="fw-bold" style="color: #333;">Information</h6>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-muted">Privacy Policy</a></li>
+          <li><a href="#" class="text-muted">Terms &amp; Conditions</a></li>
+          <li><a href="#" class="text-muted">Cancellation &amp; Refunds</a></li>
+          <li><a href="#" class="text-muted">Blogs</a></li>
+        </ul>
+      </div>
+
+      <!-- Middle Column 3: Contact Us -->
+      <div class="col-md-2 mb-4">
+        <h6 class="fw-bold" style="color: #333;">Contact us</h6>
+        <ul class="list-unstyled">
+          <li class="text-muted">+91- 9321781961</li>
+          <li>
+            <a href="" class="text-muted">
+              help@mealawe.com
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      
+
+    <!-- Footer Bottom -->
+    <div class="text-center py-3 mt-4" style="border-top: 1px solid #eee;">
+      <small class="text-muted">
+        Climbing Seeds Pvt. Ltd 2025 All rights reserved
+      </small>
+    </div>
+  </div>
+
+  
+</footer>
+<script type="module">
+  document.addEventListener("DOMContentLoaded", async () => {
+    const userInfo = await fetchUserDetails();
+    const userNameElement = document.getElementById("user-name");
+    const loginBtn = document.getElementById("login-btn");
+    const logoutBtn = document.getElementById("logout-btn");
+
+    // If the user is logged in, show their name, otherwise show "Guest"
+    if (userInfo && userInfo.name) {
+      userNameElement.textContent = `Welcome, ${userInfo.name}`;
+      loginBtn.style.display = 'none';
+      logoutBtn.style.display = 'inline-block';
+    } else {
+      userNameElement.textContent = "Welcome, Guest";
+      loginBtn.style.display = 'inline-block';
+      logoutBtn.style.display = 'none';
+    }
+
+    // Logout functionality
+    logoutBtn.addEventListener("click", () => {
+      clearUserSession();
+      window.location.href = "login.html"; // Redirect to login page after logout
+    });
+  });
+
+  // Function to fetch user details from the backend (getUserDetails.php)
+  async function fetchUserDetails() {
+    try {
+      const response = await fetch('getUserDetails.php');
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error fetching user details:', error);
+      return null;
+    }
+  }
+
+  // Utility to clear session (logout action)
+  function clearUserSession() {
+    localStorage.removeItem("user");
+  }
+</script>
+</body>
+</html>

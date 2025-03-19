@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiffin Service Chatbot</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+    <style>
+        body { font-family: Arial, sans-serif; display: flex; height: 100vh; justify-content: center; align-items: center; background-image:linear-gradient(to left, rgb(255, 255, 255), rgb(241, 195, 255)); }
+        .chat-container { background-color: #fff; border-radius: 12px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); width: 400px; padding: 20px; margin-top: 9%;}
+        .chat-box { height: 280px; overflow-y: auto; border-bottom: 2px solid #ddd; padding: 10px; margin-bottom: 10px; display: flex; flex-direction: column; }
+        .chat-message { margin: 5px 0; padding: 8px 12px; border-radius: 8px; max-width: 75%; }
+        .bot { background-color: #50116b; color: #fff; align-self: flex-start; }
+        .user { background-color: #2196F3; color: #fff; align-self: flex-end; }
+        .options { display: flex; flex-direction: column; gap: 5px; }
+        .option-btn { background-color: #50116b; color: #fff; border: none; border-radius: 5px; padding: 10px; cursor: pointer; text-align: left; }
+        .option-btn:hover { background-color: #50116b; }
+        .navbar-nav .nav-link {
+    transition: all 0.3s ease-in-out; /* Smooth transition */
+    padding: 8px 15px; /* Slightly increase padding for smoother effect */
+    border-radius: 8px; /* Rounded corners for hover effect */
+    font-weight: 500 !important;
+
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: #570151; /* Background color on hover */
+    color: #fff !important; /* Text color on hover */
+    transform: scale(1.1); /* Enlarges the link */
+}
+    </style>
+</head>
+<body>
+      <!-- Navbar -->
+  <nav class="navbar navbar-expand-md navbar-dark bg-light fixed-top">
+    <div class="container-fluid">
+        <a class="logo"><img src="logo.png" alt="" class="img-fluid" height="50px"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsExample04">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="fetch.php">Menu</a></li>
+                <li class="nav-item"><a class="nav-link" href="contactUs.html">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="save_review.php">Review</a></li>
+                <li class="nav-item"><a class="nav-link" href="customised.php">Customised Meal</a></li>
+                <li class="nav-item"><a class="nav-link" href="chatbot.html">Help Me</a></li>
+            </ul>
+            <div id="user-info">
+              <span id="user-name" class="me-3"></span>
+              <a id="logout-btn" class="btn btn-outline-danger round-button" style="display: none; color: red !important" href="logout.php" >Logout</a>
+              <button id="login-btn" class="btn btn-outline-primary round-button" onclick="location.href='login.html'">Login</button>
+          </div>          
+        </div>
+    </div>
+</nav>
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box"></div>
+        <div class="options" id="options"></div>
+    </div>
+
+    <script>
+        const chatBox = document.getElementById("chat-box");
+        const optionsBox = document.getElementById("options");
+
+        function addMessage(sender, message) {
+            const messageElement = document.createElement("div");
+            messageElement.className = `chat-message ${sender}`;
+            messageElement.innerText = message;
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function addOptions(options) {
+            optionsBox.innerHTML = ""; 
+            options.forEach(option => {
+                const button = document.createElement("button");
+                button.className = "option-btn";
+                button.innerText = option.text;
+                button.onclick = () => {
+                    addMessage("user", option.text);
+                    option.action();
+                };
+                optionsBox.appendChild(button);
+            });
+        }
+
+        function startChat() {
+            addMessage("bot", "Hello! Welcome to SPICE AND SLICE. How can I help you today?");
+            addOptions([
+                { text: "How to Order", action: showOrderInfo },
+                { text: "Payment Issues", action: showPaymentIssues },
+                { text: "Order Issues", action: showOrderIssues },
+                { text: "Other Questions", action: showOtherQuestions }
+            ]);
+        }
+
+        function showOrderInfo() {
+            addMessage("bot", "Ordering is simple! For regular meals: Go to 'Meals' and click 'Order Now'. For customized meals: Click 'Customized' and select your preferences.");
+            askMoreHelp();
+        }
+
+        function showPaymentIssues() {
+            addMessage("bot", "What kind of payment issue are you experiencing?");
+            addOptions([
+                { text: "Payment failed", action: showPaymentHelp },
+                { text: "Payment successful but order shows 'No Payment'", action: showPaymentHelp }
+            ]);
+        }
+
+        function showPaymentHelp() {
+            addMessage("bot", "I understand how frustrating payment issues can be. Please contact our customer service team at [9874563210].");
+            askMoreHelp();
+        }
+
+        function showOrderIssues() {
+            addMessage("bot", "What issue are you having with your order?");
+            addOptions([
+                { text: "Cancel Order", action: showCancelOrder },
+                { text: "Order Not Delivered", action: showContactSupport },
+                { text: "Wrong Order Received", action: showContactSupport }
+            ]);
+        }
+
+        function showCancelOrder() {
+            addMessage("bot", "To cancel your order, go to 'Order History' in your account and click 'Cancel'.");
+            askMoreHelp();
+        }
+
+        function showContactSupport() {
+            addMessage("bot", "Please contact our customer service at [9874563210] for immediate assistance.");
+            askMoreHelp();
+        }
+
+        function showOtherQuestions() {
+            addMessage("bot", "For any other questions, please contact customer service at [9874563210].");
+            askMoreHelp();
+        }
+
+        function askMoreHelp() {
+            addOptions([
+                { text: "Yes", action: () => {
+                    addMessage("bot", "Thank you! Have a great day!");
+                    optionsBox.innerHTML = ""; 
+                } },
+                { text: "No", action: () => {
+                    addMessage("bot", "Thank you! Have a great day!");
+                    optionsBox.innerHTML = "";
+                } }
+            ]);
+        }
+
+        window.onload = startChat;
+    </script>
+    <script type="module">
+        document.addEventListener("DOMContentLoaded", async () => {
+          const userInfo = await fetchUserDetails();
+          const userNameElement = document.getElementById("user-name");
+          const loginBtn = document.getElementById("login-btn");
+          const logoutBtn = document.getElementById("logout-btn");
+      
+          // If the user is logged in, show their name, otherwise show "Guest"
+          if (userInfo && userInfo.name) {
+            userNameElement.textContent = `Welcome, ${userInfo.name}`;
+            loginBtn.style.display = 'none';
+            logoutBtn.style.display = 'inline-block';
+          } else {
+            userNameElement.textContent = "Welcome, Guest";
+            loginBtn.style.display = 'inline-block';
+            logoutBtn.style.display = 'none';
+          }
+      
+          // Logout functionality
+          logoutBtn.addEventListener("click", () => {
+            clearUserSession();
+            window.location.href = "login.html"; // Redirect to login page after logout
+          });
+        });
+      
+        // Function to fetch user details from the backend (getUserDetails.php)
+        async function fetchUserDetails() {
+          try {
+            const response = await fetch('getUserDetails.php');
+            const data = await response.json();
+            return data;
+          } catch (error) {
+            console.error('Error fetching user details:', error);
+            return null;
+          }
+        }
+      
+        // Utility to clear session (logout action)
+        function clearUserSession() {
+          localStorage.removeItem("user");
+        }
+        </script>
+</body>
+</html>

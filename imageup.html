@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+    rel="stylesheet" 
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
+    crossorigin="anonymous">
+    <style>
+        .upload-container {
+            max-width: 400px;
+            margin: auto;
+            text-align: center;
+            padding: 20px;
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+        }
+        #profile-pic {
+            width: 100%;
+            max-height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            display: none;
+        }
+        .upload-btn {
+            margin-top: 10px;
+        }
+   
+          .navbar-nav .nav-link {
+    color: #fff !important; /* Text color changed to white */
+    transition: all 0.3s ease-in-out;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-weight: 500 !important;
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: #570151; /* Background color on hover */
+    color: #fff !important; /* Text color remains white on hover */
+    transform: scale(1.1);
+}
+
+   
+    </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsExample04">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item"><a class="nav-link" href="admin.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="imageup.html">Menu</a></li>
+                <li class="nav-item"><a class="nav-link" href="orderDetails.php"> Orders</a></li>
+                <li class="nav-item"><a class="nav-link" href="displayContact.php"> Contact </a></li>
+
+
+
+            </ul>
+            <div id="user-info">
+              <span id="user-name" class="me-3"></span>
+              <a id="logout-btn" class="btn btn-outline-danger round-button" style="display: none; color: red !important" href="logout.php" >Logout</a>
+              <button id="login-btn" class="btn btn-outline-primary round-button" onclick="location.href='login.html'">Login</button>
+          </div>          
+        </div>
+    </div>
+</nav>
+    <div class="container">
+        <div class="row col-md-6 col-md-offset-3">
+          <div class="panel panel-primary">
+            <div class="panel-heading text-center">
+              <br><br> <br>
+              <h1>Add Menu</h1>
+            </div>
+            <div class="panel-body">
+              <form action="imagezz.php" method="POST" enctype="multipart/form-data" >
+                <div class="container mt-5">
+                    <div class="upload-container">
+                        <p class="mb-2">Upload your Image:</p>
+                        <input type="file" name="my_image" id="input-file" >
+                        <!-- <img src="upload_img.png" id="profile-pic" class="mt-3"> -->
+                        <button class="btn btn-primary upload-btn" onclick="clearImage()">Clear Image</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="Receipe Name">Receipe Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="ReceipeName"
+                    name="ReceipeName"
+                  />
+                </div>
+                
+                <div class="form-group">
+                  <label for="Price">price</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="Price"
+                    name="Price"
+                  />
+                </div>
+                
+                </div>
+                <div class="form-group">
+                  <label for="3 day">3day</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="3day"
+                    name="threeday"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="1 Week">1 Week (5% off)</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="1week"
+                    name="oneweek"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="2week">2 Week (7% off)</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="2week"
+                    name="twoweek"
+                  />
+                </div>
+
+                <div class="form-group">
+                    <label for="1month">1 month (10% off)</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="1month"
+                      name="onemonth"
+                    />
+                  </div>
+
+                <input type="submit" name= "register" class="btn btn-primary" />
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <img src="..." class="rounded mr-2" alt="...">
+      <strong class="mr-auto">Bootstrap</strong>
+      <small>11 mins ago</small>
+      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+
+    <script>
+        document.getElementById('input-file').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.getElementById('profile-pic');
+                    img.src = e.target.result;
+                    img.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function clearImage() {
+            document.getElementById('input-file').value = "";
+            document.getElementById('profile-pic').style.display = 'none';
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module">
+      document.addEventListener("DOMContentLoaded", async () => {
+        const userInfo = await fetchUserDetails();
+        const userNameElement = document.getElementById("user-name");
+        const loginBtn = document.getElementById("login-btn");
+        const logoutBtn = document.getElementById("logout-btn");
+    
+        // If the user is logged in, show their name, otherwise show "Guest"
+        if (userInfo && userInfo.name) {
+          userNameElement.textContent = `Welcome, ${userInfo.name}`;
+          loginBtn.style.display = 'none';
+          logoutBtn.style.display = 'inline-block';
+        } else {
+          userNameElement.textContent = "Welcome, Guest";
+          loginBtn.style.display = 'inline-block';
+          logoutBtn.style.display = 'none';
+        }
+    
+        // Logout functionality
+        logoutBtn.addEventListener("click", () => {
+          clearUserSession();
+          window.location.href = "login.html"; // Redirect to login page after logout
+        });
+      });
+    
+      // Function to fetch user details from the backend (getUserDetails.php)
+      async function fetchUserDetails() {
+        try {
+          const response = await fetch('getUserDetails.php');
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.error('Error fetching user details:', error);
+          return null;
+        }
+      }
+    
+      // Utility to clear session (logout action)
+      function clearUserSession() {
+        localStorage.removeItem("user");
+      }
+    </script>
+
+
+</body>
+</html>
